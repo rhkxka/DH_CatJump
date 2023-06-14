@@ -11,47 +11,35 @@ context.log_level = 'debug'
 
 LOCALHOST = "host3.dreamhack.games"
 NUMBER = 20799
-i=0
-Max = 0
-trial = []
 
-for test in range(1, 100001):
-	p=remote(LOCALHOST, NUMBER)
-	libc.srand(libc.time(0))
-	i=0
+p=remote(LOCALHOST, NUMBER)
+libc.srand(libc.time(0))
 
-	#read all and input all
-	for i in range(0, 37):
-		key.append('l' if libc.rand()%2 == 0 else 'h')
-		libc.rand()%2
+#read all and input all
+for i in range(0, 37):
+	key.append('l' if libc.rand()%2 == 0 else 'h')
+	libc.rand()%2
 
-	try:
-		for i in range(len(key)):
-			p.recvuntil(b':')
-			p.recvuntil(b' ')		# read until ' '
-			p.sendline(key[i])
-			#print(i)
-	finally:
-		#print(f"erro on {i+1}")
-		if Max<i+1: Max=i+1
+for i in range(len(key)):
+	p.recvuntil(b':')
+	p.recvuntil(b' ')		# read until ' '
+	p.sendline(key[i])
 
-	p.interactive()
-	"""
-	p.recvuntil(b":")
-	p.recvuntil(b" ")
-	p.sendline("grep DH")
-	#p.sendline("ls -al")# /tmp/cat_db")
-	flag = []
-	#get all info
-	try:
-		while True:
-			flag.append(p.recvline())
-	finally:
-		print(flag)
-		break
+p.interactive()
 
-
-print(trial)
+"""
+p.recvuntil(b":")
+p.recvuntil(b" ")
+p.sendline("grep DH")
+#p.sendline("ls -al")# /tmp/cat_db")
+flag = []
+#get all info
+try:
+	while True:
+		flag.append(p.recvline())
+finally:
+	print(flag)
+	break
 """
 		
 		
